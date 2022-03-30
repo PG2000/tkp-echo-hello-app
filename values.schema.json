@@ -1,0 +1,381 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema",
+    "$id": "http://example.com/example.json",
+    "type": "object",
+    "title": "The root schema",
+    "description": "The root schema comprises the entire JSON document.",
+    "default": {},
+    "examples": [
+        {
+            "image": {
+                "repository": "hashicorp/http-echo",
+                "pullPolicy": "IfNotPresent"
+            },
+            "text": "echo test",
+            "securityContext": {
+                "capabilities": {
+                    "drop": [
+                        "ALL"
+                    ]
+                },
+                "readOnlyRootFilesystem": true,
+                "runAsNonRoot": true,
+                "runAsUser": 1000
+            },
+            "env": {
+                "TZ": "UTC"
+            },
+            "service": {
+                "main": {
+                    "ports": {
+                        "http": {
+                            "port": 5678
+                        }
+                   }
+                }
+            },
+            "ingress": {
+                "main": {
+                    "enabled": false
+                }
+            }
+        }
+    ],
+    "required": [
+        "image",
+        "text",
+        "securityContext",
+        "env",
+        "service",
+        "ingress"
+    ],
+    "properties": {
+        "image": {
+            "$id": "#/properties/image",
+            "type": "object",
+            "title": "The image schema",
+            "description": "An explanation about the purpose of this instance.",
+            "default": {},
+            "examples": [
+                {
+                    "repository": "hashicorp/http-echo",
+                    "pullPolicy": "IfNotPresent"
+                }
+            ],
+            "required": [
+                "repository",
+                "pullPolicy"
+            ],
+            "properties": {
+                "repository": {
+                    "$id": "#/properties/image/properties/repository",
+                    "type": "string",
+                    "title": "The repository schema",
+                    "description": "An explanation about the purpose of this instance.",
+                    "default": "",
+                    "examples": [
+                        "hashicorp/http-echo"
+                    ]
+                },
+                "pullPolicy": {
+                    "$id": "#/properties/image/properties/pullPolicy",
+                    "type": "string",
+                    "title": "The pullPolicy schema",
+                    "description": "An explanation about the purpose of this instance.",
+                    "default": "",
+                    "examples": [
+                        "IfNotPresent"
+                    ]
+                }
+            },
+            "additionalProperties": true
+        },
+        "text": {
+            "$id": "#/properties/text",
+            "type": "string",
+            "title": "The text schema",
+            "description": "An explanation about the purpose of this instance.",
+            "default": "",
+            "examples": [
+                "echo test"
+            ]
+        },
+        "securityContext": {
+            "$id": "#/properties/securityContext",
+            "type": "object",
+            "title": "The securityContext schema",
+            "description": "An explanation about the purpose of this instance.",
+            "default": {},
+            "examples": [
+                {
+                    "capabilities": {
+                        "drop": [
+                            "ALL"
+                        ]
+                    },
+                    "readOnlyRootFilesystem": true,
+                    "runAsNonRoot": true,
+                    "runAsUser": 1000
+                }
+            ],
+            "required": [
+                "capabilities",
+                "readOnlyRootFilesystem",
+                "runAsNonRoot",
+                "runAsUser"
+            ],
+            "properties": {
+                "capabilities": {
+                    "$id": "#/properties/securityContext/properties/capabilities",
+                    "type": "object",
+                    "title": "The capabilities schema",
+                    "description": "An explanation about the purpose of this instance.",
+                    "default": {},
+                    "examples": [
+                        {
+                            "drop": [
+                                "ALL"
+                            ]
+                        }
+                    ],
+                    "required": [
+                        "drop"
+                    ],
+                    "properties": {
+                        "drop": {
+                            "$id": "#/properties/securityContext/properties/capabilities/properties/drop",
+                            "type": "array",
+                            "title": "The drop schema",
+                            "description": "An explanation about the purpose of this instance.",
+                            "default": [],
+                            "examples": [
+                                [
+                                    "ALL"
+                                ]
+                            ],
+                            "additionalItems": true,
+                            "items": {
+                                "$id": "#/properties/securityContext/properties/capabilities/properties/drop/items",
+                                "anyOf": [
+                                    {
+                                        "$id": "#/properties/securityContext/properties/capabilities/properties/drop/items/anyOf/0",
+                                        "type": "string",
+                                        "title": "The first anyOf schema",
+                                        "description": "An explanation about the purpose of this instance.",
+                                        "default": "",
+                                        "examples": [
+                                            "ALL"
+                                        ]
+                                    }
+                                ]
+                            }
+                        }
+                    },
+                    "additionalProperties": true
+                },
+                "readOnlyRootFilesystem": {
+                    "$id": "#/properties/securityContext/properties/readOnlyRootFilesystem",
+                    "type": "boolean",
+                    "title": "The readOnlyRootFilesystem schema",
+                    "description": "An explanation about the purpose of this instance.",
+                    "default": false,
+                    "examples": [
+                        true
+                    ]
+                },
+                "runAsNonRoot": {
+                    "$id": "#/properties/securityContext/properties/runAsNonRoot",
+                    "type": "boolean",
+                    "title": "The runAsNonRoot schema",
+                    "description": "An explanation about the purpose of this instance.",
+                    "default": false,
+                    "examples": [
+                        true
+                    ]
+                },
+                "runAsUser": {
+                    "$id": "#/properties/securityContext/properties/runAsUser",
+                    "type": "integer",
+                    "title": "The runAsUser schema",
+                    "description": "An explanation about the purpose of this instance.",
+                    "default": 0,
+                    "examples": [
+                        1000
+                    ]
+                }
+            },
+            "additionalProperties": true
+        },
+        "env": {
+            "$id": "#/properties/env",
+            "type": "object",
+            "title": "The env schema",
+            "description": "An explanation about the purpose of this instance.",
+            "default": {},
+            "examples": [
+                {
+                    "TZ": "UTC"
+                }
+            ],
+            "required": [
+                "TZ"
+            ],
+            "properties": {
+                "TZ": {
+                    "$id": "#/properties/env/properties/TZ",
+                    "type": "string",
+                    "title": "The TZ schema",
+                    "description": "An explanation about the purpose of this instance.",
+                    "default": "",
+                    "examples": [
+                        "UTC"
+                    ]
+                }
+            },
+            "additionalProperties": true
+        },
+        "service": {
+            "$id": "#/properties/service",
+            "type": "object",
+            "title": "The service schema",
+            "description": "An explanation about the purpose of this instance.",
+            "default": {},
+            "examples": [
+                {
+                    "main": {
+                        "ports": {
+                            "http": {
+                                "port": 5678
+                            }
+                        }
+                    }
+                }
+            ],
+            "required": [
+                "main"
+            ],
+            "properties": {
+                "main": {
+                    "$id": "#/properties/service/properties/main",
+                    "type": "object",
+                    "title": "The main schema",
+                    "description": "An explanation about the purpose of this instance.",
+                    "default": {},
+                    "examples": [
+                        {
+                            "ports": {
+                                "http": {
+                                    "port": 5678
+                                }
+                            }
+                        }
+                    ],
+                    "required": [
+                        "ports"
+                    ],
+                    "properties": {
+                        "ports": {
+                            "$id": "#/properties/service/properties/main/properties/ports",
+                            "type": "object",
+                            "title": "The ports schema",
+                            "description": "An explanation about the purpose of this instance.",
+                            "default": {},
+                            "examples": [
+                                {
+                                    "http": {
+                                        "port": 5678
+                                    }
+                                }
+                            ],
+                            "required": [
+                                "http"
+                            ],
+                            "properties": {
+                                "http": {
+                                    "$id": "#/properties/service/properties/main/properties/ports/properties/http",
+                                    "type": "object",
+                                    "title": "The http schema",
+                                    "description": "An explanation about the purpose of this instance.",
+                                    "default": {},
+                                    "examples": [
+                                        {
+                                            "port": 5678
+                                        }
+                                    ],
+                                    "required": [
+                                        "port"
+                                    ],
+                                    "properties": {
+                                        "port": {
+                                            "$id": "#/properties/service/properties/main/properties/ports/properties/http/properties/port",
+                                            "type": "integer",
+                                            "title": "The port schema",
+                                            "description": "An explanation about the purpose of this instance.",
+                                            "default": 0,
+                                            "examples": [
+                                                5678
+                                            ]
+                                        }
+                                    },
+                                    "additionalProperties": true
+                                }
+                            },
+                            "additionalProperties": true
+                        }
+                    },
+                    "additionalProperties": true
+                }
+            },
+            "additionalProperties": true
+        },
+        "ingress": {
+            "$id": "#/properties/ingress",
+            "type": "object",
+            "title": "The ingress schema",
+            "description": "An explanation about the purpose of this instance.",
+            "default": {},
+            "examples": [
+                {
+                    "main": {
+                        "enabled": false
+                    }
+                }
+            ],
+            "required": [
+                "main"
+            ],
+            "properties": {
+                "main": {
+                    "$id": "#/properties/ingress/properties/main",
+                    "type": "object",
+                    "title": "The main schema",
+                    "description": "An explanation about the purpose of this instance.",
+                    "default": {},
+                    "examples": [
+                        {
+                            "enabled": false
+                        }
+                    ],
+                    "required": [
+                        "enabled"
+                    ],
+                    "properties": {
+                        "enabled": {
+                            "$id": "#/properties/ingress/properties/main/properties/enabled",
+                            "type": "boolean",
+                            "title": "The enabled schema",
+                            "description": "An explanation about the purpose of this instance.",
+                            "default": false,
+                            "examples": [
+                                false
+                            ]
+                        }
+                    },
+                    "additionalProperties": true
+                }
+            },
+            "additionalProperties": true
+        }
+    },
+    "additionalProperties": true
+} 
